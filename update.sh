@@ -32,12 +32,13 @@ start() {
         RETURN=$?
         if [ $RETURN -ne 0 ]; then
             echo "Wait for the internet connection"
-            sleep 1
+            RETRY=`expr $RETRY - 1`
+            sleep 2
             continue
         else
             break
         fi
-        RETRY=`expr $RETRY - 1`
+
     done
     update  
     run
