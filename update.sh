@@ -22,7 +22,7 @@ update() {
 }
 
 run() {
-    bash $RUN_DIR/main.sh
+    xterm -e bash $RUN_DIR/main.sh &
 }
 
 start() {
@@ -31,7 +31,8 @@ start() {
         pull
         RETURN=$?
         if [ $RETURN -ne 0 ]; then
-            echo "Check for the internet connection"
+            echo "Wait for the internet connection"
+            sleep 1
             continue
         else
             break
