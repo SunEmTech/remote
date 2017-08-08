@@ -1,3 +1,4 @@
+#!/bin/bash
 # from here actual execution should start
 
 main() {

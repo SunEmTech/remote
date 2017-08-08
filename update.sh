@@ -1,3 +1,4 @@
+#!/bin/bash
 # Pull and run
 PULL_DIR=$HOME/pull
 RUN_DIR=$HOME/run
