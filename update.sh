@@ -38,4 +38,3 @@ start() {
     run
 }
 
-start
