@@ -13,9 +13,11 @@ pull() {
         git -C $PULL_DIR pull
         return $?
     fi 
+    return 1
 }
 
 update() {
+    mkdir -p $RUN_DIR
     cp $PULL_DIR/* $RUN_DIR
 }
 
@@ -25,8 +27,9 @@ run() {
 
 start() {
     RETRY=3
-    if [ $RETRY -ne 0 ]; then
-        RETURN=`pull`
+    while [ $RETRY -ne 0 ]; do
+        pull
+        RETURN=$?
         if [ $RETURN -ne 0 ]; then
             echo "Check for the internet connection"
             continue
@@ -34,8 +37,11 @@ start() {
             break
         fi
         RETRY=`expr $RETRY - 1`
-    fi 
+    done
     update  
     run
 }
+
+start
+
 
